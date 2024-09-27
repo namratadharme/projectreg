@@ -4,8 +4,9 @@ body {
 #container {
   display: flex;
   background-color: #f7f8fa;
-  justify-items: center;
-  margin: 20px 500px;
+  justify-content: center;
+  align-content: center;
+  margin: 30px 500px;
   gap: 10px;
   border: 1px solid black;
   border-radius: 7px;

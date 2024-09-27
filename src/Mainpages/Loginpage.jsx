@@ -81,7 +81,7 @@ function Loginpage() {
         ></input>
         <p id="paragraph">{error ? error : ""}</p>
         <button id="sub-btn" onClick={handleSubmit} disabled={!enable}>
-          submit
+          Log in
         </button>
       </div>
     </>
