@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./Regist.css";
-import { userRegistration } from "./Services/user.services";
+import "../Regist.css";
+import { userRegistration } from "../Services/user.services";
 import { Await } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -83,7 +83,7 @@ function Registration() {
         ></input>
         <p className="err">{error ? error : ""}</p>
         <button className="regBtn" onClick={handleSignup} disabled={!enable}>
-          signup
+          Register
         </button>
       </div>
     </>

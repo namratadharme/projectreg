@@ -1,9 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import "./login.css";
+import "../login.css";
 import { useEffect } from "react";
-import axios from "axios";
-import { loginUser } from "./Services/user.services.js";
+import { loginUser } from "../Services/user.services";
 import { useNavigate } from "react-router-dom";
 
 function Loginpage() {
@@ -28,6 +27,7 @@ function Loginpage() {
         const token = await loginUser(email, password);
         console.log("Token", token);
         localStorage.setItem("token", token);
+        navigateTo("/home");
       } catch (error) {
       } finally {
         setLoading(false);
@@ -52,9 +52,6 @@ function Loginpage() {
       return true;
     }
   }
-  function handleLogout() {
-    localStorage.removeItem("token");
-  }
 
   useEffect(() => {
     if (!email == "" && !password == "") {
@@ -64,39 +61,35 @@ function Loginpage() {
     }
   }, [email, password]);
 
+  return (
+    <>
+      <div id="container">
+        <h1 id="heading">Log-In</h1>
+        <label>Email</label>
+        <input
+          type="text"
+          className="inputField"
+          placeholder="Email"
+          onChange={handleInput1}
+        ></input>
+        <label>Password</label>
+        <input
+          type="password"
+          className="inputField"
+          placeholder="Password"
+          onChange={handleInput2}
+        ></input>
+        <p id="paragraph">{error ? error : ""}</p>
+        <button id="sub-btn" onClick={handleSubmit} disabled={!enable}>
+          submit
+        </button>
+      </div>
+    </>
+  );
   const localToken = localStorage.getItem("token");
   console.log(localToken);
   if (localToken === null) {
-    return (
-      <>
-        <div id="container">
-          <h1>Log-In</h1>
-          <label>Email</label>
-          <input
-            type="text"
-            className="inputField"
-            onChange={handleInput1}
-          ></input>
-          <label>Password</label>
-          <input
-            type="password"
-            className="inputField"
-            onChange={handleInput2}
-          ></input>
-          <p id="paragraph">{error ? error : ""}</p>
-          <button id="sub-btn" onClick={handleSubmit} disabled={!enable}>
-            submit
-          </button>
-        </div>
-      </>
-    );
   } else {
-    return (
-      <div>
-        you are already logged in
-        <button onClick={handleLogout}>Logout</button>
-      </div>
-    );
   }
 }
 export default Loginpage;
